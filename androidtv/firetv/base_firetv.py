@@ -58,7 +58,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
         media_session_state : int, None
             The state from the output of ``dumpsys media_session``, or ``None`` if it was not determined
         running_apps : list, None
-            A list of the running apps, or ``None`` if it was not determined
+            A list of the apps, or ``None`` if it was not determined
         hdmi_input : str, None
             The HDMI input, or ``None`` if it could not be determined
 
@@ -69,7 +69,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
         current_app : str
             The current running app
         running_apps : list
-            A list of the running apps if ``get_running_apps`` is True, otherwise the list ``[current_app]``
+            A list of the apps if ``get_apps`` is True, otherwise the list ``[current_app]``
         hdmi_input : str, None
             The HDMI input, or ``None`` if it could not be determined
 
@@ -93,7 +93,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
             running_apps = None
 
         else:
-            # Get the running apps
+            # Get the apps
             if not running_apps and current_app:
                 running_apps = [current_app]
 
@@ -218,7 +218,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
     #                               Properties                                #
     #                                                                         #
     # ======================================================================= #
-    def _get_properties(self, output, get_running_apps=True):
+    def _get_properties(self, output, get_apps=True):
         """Get the properties needed for Home Assistant updates.
 
         This will send one of the following ADB commands:
@@ -232,7 +232,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
         ----------
         output : str, None
             The output of the ADB command used to retrieve the properties
-        get_running_apps : bool
+        get_apps : bool
             Whether or not to get the ``running_apps`` property
 
         Returns
@@ -248,7 +248,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
         media_session_state : int, None
             The state from the output of ``dumpsys media_session``, or ``None`` if it was not determined
         running_apps : list, None
-            A list of the running apps, or ``None`` if it was not determined
+            A list of the apps, or ``None`` if it was not determined
         hdmi_input : str, None
             The HDMI input, or ``None`` if it could not be determined
 
@@ -290,7 +290,7 @@ class BaseFireTV(BaseTV):  # pylint: disable=too-few-public-methods
         hdmi_input = self._get_hdmi_input(lines[3])
 
         # `running_apps` property
-        if not get_running_apps or len(lines) < 5:
+        if not get_apps or len(lines) < 5:
             return screen_on, awake, wake_lock_size, current_app, media_session_state, None, hdmi_input
         running_apps = self._running_apps(lines[4:])
 

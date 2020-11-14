@@ -66,7 +66,7 @@ class BaseAndroidTV(BaseTV):  # pylint: disable=too-few-public-methods
         volume : int, None
             The absolute volume level, or ``None`` if it was not determined
         running_apps : list, None
-            A list of the running apps, or ``None`` if it was not determined
+            A list of the apps, or ``None`` if it was not determined
         hdmi_input : str, None
             The HDMI input, or ``None`` if it could not be determined
 
@@ -77,7 +77,7 @@ class BaseAndroidTV(BaseTV):  # pylint: disable=too-few-public-methods
         current_app : str
             The current running app
         running_apps : list
-            A list of the running apps if ``get_running_apps`` is True, otherwise the list ``[current_app]``
+            A list of the apps if ``get_apps`` is True, otherwise the list ``[current_app]``
         audio_output_device : str
             The current audio playback device
         is_volume_muted : bool
@@ -104,7 +104,7 @@ class BaseAndroidTV(BaseTV):  # pylint: disable=too-few-public-methods
             state = constants.STATE_STANDBY
 
         else:
-            # Get the running apps
+            # Get the apps
             if not running_apps and current_app:
                 running_apps = [current_app]
 
@@ -200,14 +200,14 @@ class BaseAndroidTV(BaseTV):  # pylint: disable=too-few-public-methods
     #                               Properties                                #
     #                                                                         #
     # ======================================================================= #
-    def _get_properties(self, output, get_running_apps):
+    def _get_properties(self, output, get_apps):
         """Get the properties needed for Home Assistant updates.
 
         Parameters
         ----------
         output : str, None
             The output of the ADB command used to retrieve the properties
-        get_running_apps : bool
+        get_apps : bool
             Whether or not to get the ``running_apps`` property
 
         Returns
@@ -231,7 +231,7 @@ class BaseAndroidTV(BaseTV):  # pylint: disable=too-few-public-methods
         volume : int, None
             The absolute volume level, or ``None`` if it was not determined
         running_apps : list, None
-            A list of the running apps, or ``None`` if it was not determined
+            A list of the apps, or ``None`` if it was not determined
         hdmi_input : str, None
             The HDMI input, or ``None`` if it could not be determined
 
@@ -297,7 +297,7 @@ class BaseAndroidTV(BaseTV):  # pylint: disable=too-few-public-methods
         is_volume_muted = self._is_volume_muted(stream_music)
 
         # `running_apps` property
-        if not get_running_apps or len(lines) < 17:
+        if not get_apps or len(lines) < 17:
             return screen_on, awake, audio_state, wake_lock_size, current_app, media_session_state, audio_output_device, is_volume_muted, volume, None, hdmi_input
         running_apps = self._running_apps(lines[16:])
 

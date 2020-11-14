@@ -43,12 +43,12 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
     #                          Home Assistant Update                          #
     #                                                                         #
     # ======================================================================= #
-    async def update(self, get_running_apps=True, lazy=True):
+    async def update(self, get_apps=True, lazy=True):
         """Get the info needed for a Home Assistant update.
 
         Parameters
         ----------
-        get_running_apps : bool
+        get_apps : bool
             Whether or not to get the :meth:`~androidtv.androidtv.androidtv_async.AndroidTVAsync.running_apps` property
         lazy : bool
             Whether or not to continue retrieving properties if the device is off or the screensaver is running
@@ -60,7 +60,7 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
         current_app : str
             The current running app
         running_apps : list
-            A list of the running apps if ``get_running_apps`` is True, otherwise the list ``[current_app]``
+            A list of the apps if ``get_apps`` is True, otherwise the list ``[current_app]``
         audio_output_device : str
             The current audio playback device
         is_volume_muted : bool
@@ -70,7 +70,7 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
 
         """
         # Get the properties needed for the update
-        screen_on, awake, audio_state, wake_lock_size, current_app, media_session_state, audio_output_device, is_volume_muted, volume, running_apps, hdmi_input = await self.get_properties(get_running_apps=get_running_apps, lazy=lazy)
+        screen_on, awake, audio_state, wake_lock_size, current_app, media_session_state, audio_output_device, is_volume_muted, volume, running_apps, hdmi_input = await self.get_properties(get_apps=get_apps, lazy=lazy)
 
         return self._update(screen_on, awake, audio_state, wake_lock_size, current_app, media_session_state, audio_output_device, is_volume_muted, volume, running_apps, hdmi_input)
 
@@ -79,7 +79,7 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
     #                               Properties                                #
     #                                                                         #
     # ======================================================================= #
-    async def get_properties(self, get_running_apps=True, lazy=False):
+    async def get_properties(self, get_apps=True, lazy=False):
         """Get the properties needed for Home Assistant updates.
 
         This will send one of the following ADB commands:
@@ -91,7 +91,7 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
 
         Parameters
         ----------
-        get_running_apps : bool
+        get_apps : bool
             Whether or not to get the :meth:`~androidtv.androidtv.androidtv_async.AndroidTVAsync.running_apps` property
         lazy : bool
             Whether or not to continue retrieving properties if the device is off or the screensaver is running
@@ -117,31 +117,31 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
         volume : int, None
             The absolute volume level, or ``None`` if it was not determined
         running_apps : list, None
-            A list of the running apps, or ``None`` if it was not determined
+            A list of the apps, or ``None`` if it was not determined
         hdmi_input : str, None
             The HDMI input, or ``None`` if it could not be determined
 
         """
         if lazy:
-            if get_running_apps:
+            if get_apps:
                 output = await self._adb.shell(constants.CMD_ANDROIDTV_PROPERTIES_LAZY_RUNNING_APPS if not self._is_google_tv else constants.CMD_GOOGLE_TV_PROPERTIES_LAZY_RUNNING_APPS)
             else:
                 output = await self._adb.shell(constants.CMD_ANDROIDTV_PROPERTIES_LAZY_NO_RUNNING_APPS if not self._is_google_tv else constants.CMD_GOOGLE_TV_PROPERTIES_LAZY_NO_RUNNING_APPS)
         else:
-            if get_running_apps:
+            if get_apps:
                 output = await self._adb.shell(constants.CMD_ANDROIDTV_PROPERTIES_NOT_LAZY_RUNNING_APPS if not self._is_google_tv else constants.CMD_GOOGLE_TV_PROPERTIES_NOT_LAZY_RUNNING_APPS)
             else:
                 output = await self._adb.shell(constants.CMD_ANDROIDTV_PROPERTIES_NOT_LAZY_NO_RUNNING_APPS if not self._is_google_tv else constants.CMD_GOOGLE_TV_PROPERTIES_NOT_LAZY_NO_RUNNING_APPS)
         _LOGGER.debug("Android TV %s:%d `get_properties` response: %s", self.host, self.port, output)
 
-        return self._get_properties(output, get_running_apps)
+        return self._get_properties(output, get_apps)
 
-    async def get_properties_dict(self, get_running_apps=True, lazy=True):
+    async def get_properties_dict(self, get_apps=True, lazy=True):
         """Get the properties needed for Home Assistant updates and return them as a dictionary.
 
         Parameters
         ----------
-        get_running_apps : bool
+        get_apps : bool
             Whether or not to get the :meth:`~androidtv.androidtv.androidtv_async.AndroidTVAsync.running_apps` property
         lazy : bool
             Whether or not to continue retrieving properties if the device is off or the screensaver is running
@@ -153,7 +153,7 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
             ``'media_session_state'``, ``'audio_state'``, ``'audio_output_device'``, ``'is_volume_muted'``, ``'volume'``, ``'running_apps'``, and ``'hdmi_input'``
 
         """
-        screen_on, awake, audio_state, wake_lock_size, current_app, media_session_state, audio_output_device, is_volume_muted, volume, running_apps, hdmi_input = await self.get_properties(get_running_apps=get_running_apps, lazy=lazy)
+        screen_on, awake, audio_state, wake_lock_size, current_app, media_session_state, audio_output_device, is_volume_muted, volume, running_apps, hdmi_input = await self.get_properties(get_apps=get_apps, lazy=lazy)
 
         return {'screen_on': screen_on,
                 'awake': awake,
@@ -173,7 +173,7 @@ class AndroidTVAsync(BaseTVAsync, BaseAndroidTV):
         Returns
         -------
         list
-            A list of the running apps
+            A list of the apps
 
         """
         running_apps_response = await self._adb.shell(constants.CMD_RUNNING_APPS_ANDROIDTV)

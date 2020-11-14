@@ -570,91 +570,91 @@ class TestAndroidTVAsyncPython(unittest.TestCase):
 
         """
         with async_patchers.patch_shell(None)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT_NONE)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT1)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT1)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT2)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT2)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3A)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3A)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3B)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3B)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3C)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3C)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3D)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3D)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3E)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3E)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3F)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3F)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3G)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT3G)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT4)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT4)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT4)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=False)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=False)
             self.assertEqual(properties, GET_PROPERTIES_DICT4)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT4)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=False, lazy=False)
+            properties = await self.atv.get_properties_dict(get_apps=False, lazy=False)
             self.assertEqual(properties, GET_PROPERTIES_DICT4)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_IDLE)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT_PLEX_IDLE)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_PLAYING)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT_PLEX_PLAYING)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_PAUSED)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT_PLEX_PAUSED)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_PAUSED)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT_PLEX_PAUSED)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_PAUSED)[self.PATCH_KEY]:
-            properties = await self.atv.get_properties_dict(get_running_apps=False, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=False, lazy=True)
             self.assertEqual(properties, GET_PROPERTIES_DICT_PLEX_PAUSED)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_PAUSED + RUNNING_APPS_OUTPUT)[self.PATCH_KEY]:
             true_properties = GET_PROPERTIES_DICT_PLEX_PAUSED.copy()
             true_properties['running_apps'] = RUNNING_APPS_LIST
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=True)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=True)
             self.assertEqual(properties, true_properties)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT_PLEX_PAUSED + RUNNING_APPS_OUTPUT)[self.PATCH_KEY]:
             true_properties = GET_PROPERTIES_DICT_PLEX_PAUSED.copy()
             true_properties['running_apps'] = RUNNING_APPS_LIST
-            properties = await self.atv.get_properties_dict(get_running_apps=True, lazy=False)
+            properties = await self.atv.get_properties_dict(get_apps=True, lazy=False)
             self.assertEqual(properties, true_properties)
 
     @awaiter
@@ -708,7 +708,7 @@ class TestAndroidTVAsyncPython(unittest.TestCase):
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3 + RUNNING_APPS_OUTPUT)[self.PATCH_KEY]:
             self.atv._state_detection_rules = None
-            state = await self.atv.update(get_running_apps=True)
+            state = await self.atv.update(get_apps=True)
             true_state = STATE3[:2] + (RUNNING_APPS_LIST,) + STATE3[3:]
             self.assertTupleEqual(state, true_state)
 

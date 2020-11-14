@@ -255,11 +255,11 @@ class TestFireTVAsyncPython(unittest.TestCase):
             self.assertDictEqual(properties, GET_PROPERTIES_DICT3E)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3E)[self.PATCH_KEY]:
-            properties = await self.ftv.get_properties_dict(lazy=True, get_running_apps=False)
+            properties = await self.ftv.get_properties_dict(lazy=True, get_apps=False)
             self.assertDictEqual(properties, GET_PROPERTIES_DICT3E)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3E)[self.PATCH_KEY]:
-            properties = await self.ftv.get_properties_dict(lazy=False, get_running_apps=False)
+            properties = await self.ftv.get_properties_dict(lazy=False, get_apps=False)
             self.assertDictEqual(properties, GET_PROPERTIES_DICT3E)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT3F)[self.PATCH_KEY]:
@@ -271,7 +271,7 @@ class TestFireTVAsyncPython(unittest.TestCase):
             self.assertDictEqual(properties, GET_PROPERTIES_DICT4)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT4)[self.PATCH_KEY]:
-            properties = await self.ftv.get_properties_dict(lazy=True, get_running_apps=False)
+            properties = await self.ftv.get_properties_dict(lazy=True, get_apps=False)
             self.assertDictEqual(properties, GET_PROPERTIES_DICT4)
 
         with async_patchers.patch_shell(GET_PROPERTIES_OUTPUT5)[self.PATCH_KEY]:

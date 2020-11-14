@@ -452,7 +452,7 @@ class BaseTV(object):  # pylint: disable=too-few-public-methods
 
     @staticmethod
     def _running_apps(running_apps_response):
-        """Get the running apps from the output of :py:const:`androidtv.constants.CMD_RUNNING_APPS`.
+        """Get the apps from the output of :py:const:`androidtv.constants.CMD_RUNNING_APPS`.
 
         Parameters
         ----------
@@ -462,7 +462,7 @@ class BaseTV(object):  # pylint: disable=too-few-public-methods
         Returns
         -------
         list, None
-            A list of the running apps, or ``None`` if it could not be determined
+            A list of the apps, or ``None`` if it could not be determined
 
         """
         if running_apps_response:

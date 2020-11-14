@@ -175,7 +175,7 @@ class ADBDevice(MediaPlayerDevice):
 
     @property
     def source_list(self):
-        """Return a list of running apps."""
+        """Return a list of apps."""
         return self._sources
 
     @property
