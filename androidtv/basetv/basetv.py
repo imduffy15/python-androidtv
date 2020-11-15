@@ -467,8 +467,8 @@ class BaseTV(object):  # pylint: disable=too-few-public-methods
         """
         if running_apps_response:
             if isinstance(running_apps_response, list):
-                return [line.strip().rsplit(' ', 1)[-1] for line in running_apps_response if line.strip()]
-            return [line.strip().rsplit(' ', 1)[-1] for line in running_apps_response.splitlines() if line.strip()]
+                return [line for line in running_apps_response if line.strip()]
+            return [line for line in running_apps_response.splitlines() if line.strip()]
 
         return None
 

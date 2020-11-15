@@ -50,10 +50,10 @@ CMD_MEDIA_SESSION_STATE = "dumpsys media_session | grep -A 100 'Sessions Stack' 
 CMD_MEDIA_SESSION_STATE_FULL = CMD_CURRENT_APP + " && " + CMD_MEDIA_SESSION_STATE
 
 #: Get the running apps for an Android TV device
-CMD_RUNNING_APPS_ANDROIDTV = "ps -A | grep u0_a"
+CMD_RUNNING_APPS_ANDROIDTV = "pm list packages | awk -F : '{print $2}'"
 
 #: Get the running apps for a Fire TV device
-CMD_RUNNING_APPS_FIRETV = "ps | grep u0_a"
+CMD_RUNNING_APPS_FIRETV = "pm list packages | awk -F : '{print $2}'"
 
 #: Determine if the device is on
 CMD_SCREEN_ON = "(dumpsys power | grep 'Display Power' | grep -q 'state=ON' || dumpsys power | grep -q 'mScreenOn=true')"
